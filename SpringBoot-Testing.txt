@@ -1,0 +1,49 @@
+----- Testing --------
+
+Types:
+----- Unit Testing --------
+
+-> Spring Boot has default test files created
+-> Each @Test Fn is a test
+-> Unit test refers to checking expected with actual values manually
+-> assertThat is used for checking
+
+Testing Repository:
+
+1. Create custom method like 'findEmployeeByLastName' which is not part of CRUD Repository
+2. Ctrl+Shift+T on Repository class for auto create tests
+4. Create new Repository and Autowire for testing and create assertThat statement
+5. Configure h2 database
+6. Create positive and negative tests for the each method
+7. Include @DataJpaTest annotation to main class
+8. Run tests
+
+Testing Service:
+
+1. Ctrl+Shift+T on Service class for auto create tests
+2. Declare repo object under @Mock annotation and Service object
+3. Add @ExtendWith(MockitoExtension.class) for main class
+4. Mockito integrates the already tested REPO with currently testing SERVICE to avoid cascaded testing
+5. Initialize the SERVICE obj with REP obj with @BeforeEach method
+6. Check if SERVICE is calling findAll() method to REPO or not using verify(REPO).repomethod()
+
+
+------- Integration Testing ----------------
+-> Spin Up actual Apps to test
+-> Generally by testing team
+-> Use Test Containers
+
+--- Maven Dependency ---
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-bom</artifactId>
+            <version>1.19.3</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+
